@@ -5,20 +5,19 @@ from colorama import Fore
 
 def directory_structure(path:Path, indent: int = 0):
     if not path.exists():
-        print(Fore.RED + f"The path {path} does not exist.")
+        print(" " * indent + Fore.RED + f"The path {path} does not exist.")
         return
     if not path.is_dir():
-        print(Fore.RED + f"{path} is not a directory.")
+        print(" " * indent + Fore.RED + f"{path} is not a directory.")
         return
 
     for item in path.iterdir():
         prefix = " " * indent
         if item.is_dir():
-            print(Fore.GREEN + f"{item.name}")
+            print(prefix + Fore.GREEN + f"{item.name}")
             directory_structure(item, indent + 2)
         else:
-            print(Fore.BLUE + item.name)
-
+            print(prefix + Fore.BLUE + item.name)
 
 def main():
     if len(sys.argv) < 2:
