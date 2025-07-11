@@ -22,7 +22,9 @@ def change_contact(args, contacts):
         return f"Contact {name} not found."
 
 def show_phone(args, contacts):
-    name = args
+    if not args:
+        return "The list is empty. Please add names to it."
+    name = args [0]
     if name in contacts:
         return f"{name}: {contacts[name]}"
     else:
@@ -46,11 +48,11 @@ def main():
             break
         elif command == "hello":
             print("How can I help you?")
-        elif command == "add username phone":
+        elif command == "add":
             print(add_contact(args, contacts))
-        elif command == "change username phone":
+        elif command == "change":
             print(change_contact(args, contacts))
-        elif command == "phone username":
+        elif command == "phone":
             print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(contacts))
